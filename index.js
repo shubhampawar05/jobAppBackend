@@ -12,7 +12,7 @@ app.use(jobRoutes)
 
 
 
-app.listen(8080,()=>{
+app.listen(10000,()=>{
     console.log("server is up and runing in port num 3000")
 })
 
