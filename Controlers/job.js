@@ -1,7 +1,8 @@
 const jobModel = require("./../Model/model");
 
 const jobListing = async (req, res) => {
-  const newData = req.body;
+    try {
+        const newData = req.body;
   const savedData = new jobModel(newData);
   const savedDataInDb = await savedData.save();
   res.json({
@@ -10,6 +11,14 @@ const jobListing = async (req, res) => {
     id: savedDataInDb._id,
   });
   console.log("added into db");
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: "Error retrieving data from job listing API",
+            error: error.message,
+          });  
+    }
+  
 };
 
 const josshowing = async (req, res) => {
@@ -40,15 +49,24 @@ const josshowing = async (req, res) => {
 };
 
 const jobEdit = async (req , res)=>{
-    const {id} = req.params;
-    console.log(id);
-    console.log(req.body);
-    await jobModel.findByIdAndUpdate(id, req.body);
-    res.json({
-        status: true,
-        message: "Data eidt successfully from job listing API",
-      });
-      console.log('data updated');
+    try {
+        const {id} = req.params;
+        console.log(id);
+        console.log(req.body);
+        await jobModel.findByIdAndUpdate(id, req.body);
+        res.json({
+            status: true,
+            message: "Data eidt successfully from job listing API",
+          });
+          console.log('data updated');
+    } catch (error) {
+        res.status(500).json({
+            status: false,
+            message: "Error retrieving data from job listing API",
+            error: err.message,
+          }); 
+    }
+  
 
 }
 const jobDelete = async (req , res)=>{

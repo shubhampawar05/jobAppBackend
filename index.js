@@ -5,7 +5,7 @@ const jobRoutes =require('./Routes/job')
 
 app.use(express.json())
 
-mongoose.connect('mongodb://0.0.0.0/jobDB')
+mongoose.connect('mongodb+srv://Shubham05:Mongodb@1250@job.tg4lipa.mongodb.net/')
   .then(() => console.log('Connected!....'));
 
 app.use(jobRoutes)
